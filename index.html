@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart Event Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="title-row">
+      <span class="logo">🎯</span>
+      <h1>Smart Event Dashboard</h1>
+    </div>
+  </header>
+
+  <main class="main-grid">
+    <!-- Add New Event -->
+    <section class="card form-card">
+      <h2>Add New Event</h2>
+
+      <form id="form" class="event-form">
+        <label for="EventTitle">Event Title:</label>
+        <input type="text" id="EventTitle" name="EventTitle" placeholder="Enter event title" required />
+
+        <label for="EventDate">Event Date:</label>
+        <input type="date" id="EventDate" name="EventDate" required />
+
+        <label for="Category">Category:</label>
+        <select id="Category" name="Category" required>
+          <option value="Conference">Conference</option>
+          <option value="Workshop">Workshop</option>
+          <option value="Meetup">Meetup</option>
+          <option value="Webinar">Webinar</option>
+          <option value="Social">Social</option>
+        </select>
+
+        <label for="Description">Description:</label>
+        <textarea id="Description" name="Description" placeholder="Enter event description" rows="4"></textarea>
+
+        <button type="submit" class="btn add-btn">Add Event</button>
+      </form>
+    </section>
+
+    <!-- My events -->
+    <section class="card events-card">
+      <h2>My Events</h2>
+
+      <div class="events-controls">
+        <button id="clearAllBtn" class="btn control-btn">Clear All Events</button>
+        <button id="addSampleBtn" class="btn control-btn">Add Sample Events</button>
+      </div>
+
+      <p class="empty-msg">No events yet. Add your first event!</p>
+
+      <div class="event-cards" id="eventCards"></div>
+    </section>
+
+    <!-- DOM demo -->
+    <section class="card dom-demo">
+      <h2>DOM Manipulation Demo</h2>
+
+      <div class="demo-box">
+        <div id="pressedOutput">Press any key to see the difference!</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
