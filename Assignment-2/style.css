@@ -1,8 +1,6 @@
-/* Reset-ish */
 * { box-sizing: border-box; }
 html,body { height: 100%; margin: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: #222; }
 
-/* Page background like your sample */
 body {
   background: linear-gradient(180deg,#0f2b55 0%, #27456f 60%, #3f7f84 100%);
   padding: 24px;
