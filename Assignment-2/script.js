@@ -71,25 +71,29 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    // clear console area for fresh run
     eventLog.innerHTML = '';
 
-    log("Sync Start — preparing to fetch", "sync");
-    log("Before fetch() call (sync)", "sync");
+    // ---- simplified log sequence requested ----
+    log("Sync Start", "sync");
 
+    // schedule microtask and macrotask (they will run after the current synchronous code finishes)
     Promise.resolve().then(() =>
-      log("Promise.resolve().then (microtask)", "async")
+      log("Promise.then (Microtask)", "async")
     );
 
     setTimeout(() =>
-      log("setTimeout(...,0) (macrotask)", "async")
+      log("setTimeout (Macrotask)", "async")
     , 0);
+
+    // mark end of synchronous portion
+    log("Sync End", "sync");
+    // -------------------------------------------
 
     try {
       const response = await fetch(
-        `${BASE_URL}?q=${city}&appid=${API_KEY}&units=metric`
+        `${BASE_URL}?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`
       );
-
-      log("fetch() resolved", "async");
 
       if (!response.ok) {
         throw new Error("City not found");
@@ -97,18 +101,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const data = await response.json();
 
-      log("Data received (after await response.json())", "async");
-
       renderWeather(data);
       saveHistory(city);
 
     } catch (error) {
-      log("Error: " + error.message, "error");
+      log("Error: " + (error.message || error), "error");
       weatherResult.innerHTML =
         `<p style="color:red;">City not found or network error</p>`;
     }
-
-    log("Fetch attempt finished", "sync");
   }
 
   // Form Submit
